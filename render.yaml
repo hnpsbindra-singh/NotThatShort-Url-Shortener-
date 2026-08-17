@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: notthatshort-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /v1/api/auth/register # or any public route
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_MONGODB_URI
+        sync: false # Set in Render dashboard
+      - key: BREVO_API_KEY
+        sync: false # Set in Render dashboard
+      - key: BREVO_SENDER_EMAIL
+        value: hnps.bindra@gmail.com
+      - key: BREVO_SENDER_NAME
+        value: NotThatShort
+      - key: REDIS_HOST
+        value: deep-gobbler-174262.upstash.io
+      - key: REDIS_PORT
+        value: 6379
+      - key: REDIS_USERNAME
+        value: default
+      - key: REDIS_PASSWORD
+        sync: false # Set in Render dashboard
+      - key: REDIS_SSL_ENABLED
+        value: "true"
+      - key: JWT_SECRET
+        sync: false # Set in Render dashboard
+      - key: JWT_EXPIRATION
+        value: "86400000"

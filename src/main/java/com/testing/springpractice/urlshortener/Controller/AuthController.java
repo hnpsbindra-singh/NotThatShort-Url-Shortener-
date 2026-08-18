@@ -18,6 +18,10 @@ public class AuthController {
         this.authService = authService;
     }
 
+    @GetMapping("/health")
+    public String getHealth(){
+        return "Up";
+    }
     @PostMapping("/register")
     public String register(@Valid @RequestBody RegisterRequest registerRequest){
         return authService.register(registerRequest);
